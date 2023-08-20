@@ -3,27 +3,21 @@ import spotipy
 from bs4 import BeautifulSoup
 from spotipy.oauth2 import SpotifyOAuth
 import pprint
+import os
 
-CLIENT_ID_SPOTIFY = "90c7b48ea27942328be69d429776a762"
-CLIENT_SECRET_SPOTIFY = "12a75adc97d84e63b4f923a7e1e674f9"
-URL_REDIRECT = "http://example.com"
-USERNAME = "Hadadi Mithrandir"
 song_uris = []
 pp = pprint.PrettyPrinter(indent=4)
 
 spotipy = spotipy.Spotify(
-    auth_manager=SpotifyOAuth(client_id=CLIENT_ID_SPOTIFY,
-                              client_secret=CLIENT_SECRET_SPOTIFY,
-                              redirect_uri=URL_REDIRECT,
+    auth_manager=SpotifyOAuth(client_id=os.environ['CLIENT_ID_SPOTIFY'],
+                              client_secret=os.environ['CLIENT_SECRET_SPOTIFY'],
+                              redirect_uri=os.environ['URL_REDIRECT'],
                               cache_path="token.txt",
                               show_dialog=True,
-                              username=USERNAME,
+                              username=os.environ['USERNAME'],
                               scope="playlist-modify-private"))
 user_id = spotipy.current_user()['id']
 # print(user_id)
-
-song_name = "Incomplete",
-year = 2000
 
 date = input("Which year do you want to time travel format YYYY-MM-DD:")
 
